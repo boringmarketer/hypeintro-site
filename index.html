@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HypeIntro — Walk-Up Songs for Youth Baseball</title>
+  <meta name="description" content="Walk-up songs and AI announcer intros for youth baseball. Every kid deserves a walk-up moment.">
+  <meta property="og:title" content="HypeIntro — Walk-Up Songs for Youth Baseball">
+  <meta property="og:description" content="Walk-up songs and AI announcer intros for youth baseball. Every kid deserves a walk-up moment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hypeintro.ai">
+  <meta property="og:image" content="https://hypeintro.ai/icon.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/jpeg" href="/icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05070D;
+      --surface: #0D1322;
+      --surface-light: #151F33;
+      --orange: #FF8B2B;
+      --orange-deep: #E06E10;
+      --cyan: #25E7FF;
+      --cyan-deep: #18B8D0;
+      --gold: #FFBB44;
+      --text-primary: #F4F8FF;
+      --text-secondary: #9FAECC;
+      --text-tertiary: #566A8F;
+      --glass: rgba(255,255,255,0.08);
+      --glass-subtle: rgba(255,255,255,0.04);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Stadium spotlights */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 70%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, rgba(255,139,43,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      animation: breathe-orange 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -15%;
+      right: -10%;
+      width: 65%;
+      height: 75%;
+      background: radial-gradient(ellipse at center, rgba(37,231,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      animation: breathe-cyan 6s ease-in-out infinite 3s;
+    }
+
+    @keyframes breathe-orange {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes breathe-cyan {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+
+    /* Icon */
+    .hero-icon {
+      position: relative;
+      z-index: 1;
+      width: 180px;
+      height: 180px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow:
+        0 0 60px rgba(255,139,43,0.25),
+        0 0 120px rgba(37,231,255,0.1),
+        0 20px 60px rgba(0,0,0,0.5);
+      animation: icon-enter 1s ease-out both;
+    }
+
+    .hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes icon-enter {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Wordmark */
+    .wordmark {
+      position: relative;
+      z-index: 1;
+      margin-top: 1.75rem;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      animation: fade-up 0.8s ease-out 0.2s both;
+    }
+
+    .wordmark-hype {
+      color: var(--orange);
+    }
+
+    .wordmark-intro {
+      color: var(--cyan);
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tagline */
+    .tagline {
+      position: relative;
+      z-index: 1;
+      margin-top: 1rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 380px;
+      line-height: 1.5;
+      animation: fade-up 0.8s ease-out 0.4s both;
+    }
+
+    /* App Store badge */
+    .badge {
+      position: relative;
+      z-index: 1;
+      margin-top: 2.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-light) 100%);
+      border: 1px solid var(--glass);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      animation: fade-up 0.8s ease-out 0.6s both;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .badge:hover {
+      border-color: rgba(255,139,43,0.3);
+      box-shadow: 0 0 30px rgba(255,139,43,0.08);
+    }
+
+    .badge svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fade-up 0.8s ease-out 1s both;
+    }
+
+    .scroll-hint span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 24px;
+      background: linear-gradient(to bottom, var(--text-tertiary), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 0.8; transform: scaleY(1); }
+    }
+
+    /* ─── NAV (sticky, appears on scroll) ─── */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(5,7,13,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-subtle);
+    }
+
+    .nav a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ─── LEGAL SECTIONS ─── */
+
+    .legal-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .legal-section + .legal-section {
+      border-top: 1px solid var(--glass-subtle);
+    }
+
+    .legal-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .legal-section .updated {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .legal-section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .legal-section p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 0.8rem;
+    }
+
+    .legal-section ul {
+      margin: 0.5rem 0 1rem 1.25rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .legal-section li {
+      margin-bottom: 0.3rem;
+    }
+
+    .legal-section a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .legal-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── FOOTER ─── */
+
+    .footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--glass-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-secondary);
+    }
+
+    /* ─── RESPONSIVE ─── */
+
+    @media (max-width: 480px) {
+      .hero-icon {
+        width: 140px;
+        height: 140px;
+        border-radius: 32px;
+      }
+
+      .wordmark {
+        font-size: 2.4rem;
+      }
+
+      .tagline {
+        font-size: 1.05rem;
+      }
+
+      .legal-section {
+        padding: 3rem 1.25rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-icon">
+      <img src="/icon.jpg" alt="HypeIntro app icon" width="180" height="180">
+    </div>
+
+    <h1 class="wordmark">
+      <span class="wordmark-hype">Hype</span><span class="wordmark-intro">Intro</span>
+    </h1>
+
+    <p class="tagline">Walk-up songs and AI announcer intros for youth baseball. Every kid deserves a walk-up moment.</p>
+
+    <div class="badge">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Coming Soon to the App Store
+    </div>
+
+    <div class="scroll-hint">
+      <span>Legal</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#terms">Terms of Service</a>
+    <a href="mailto:help@hypeintro.com">Contact</a>
+  </nav>
+
+  <!-- PRIVACY POLICY -->
+  <section id="privacy" class="legal-section">
+    <h2>Privacy Policy</h2>
+    <p class="updated">Last updated: February 24, 2026</p>
+
+    <p>HypeIntro ("we," "our," or "us") provides a mobile application that lets youth baseball teams manage walk-up songs, AI-generated announcer intros, and game day audio playback. This Privacy Policy describes how we collect, use, and protect your information.</p>
+
+    <h3>Information We Collect</h3>
+    <p>When you use HypeIntro, we may collect:</p>
+    <ul>
+      <li><strong>Account information</strong> &mdash; email address and authentication credentials when you sign in via Apple Sign In or email/password</li>
+      <li><strong>Team and player data</strong> &mdash; team names, player names, jersey numbers, and walk-up song configurations that you create within the app</li>
+      <li><strong>Music preferences</strong> &mdash; song selections, clip timing, and voice style choices used to configure walk-up intros</li>
+      <li><strong>Usage data</strong> &mdash; app interactions, feature usage, and analytics events to help us improve the product</li>
+    </ul>
+
+    <h3>How We Use Your Information</h3>
+    <p>We use collected information to:</p>
+    <ul>
+      <li>Provide and maintain the HypeIntro service</li>
+      <li>Generate AI announcer voice intros for your players</li>
+      <li>Process in-app purchases and manage subscriptions</li>
+      <li>Analyze usage patterns to improve the app experience</li>
+      <li>Send service-related communications when necessary</li>
+    </ul>
+
+    <h3>Third-Party Services</h3>
+    <p>HypeIntro uses the following third-party services:</p>
+    <ul>
+      <li><strong>Supabase</strong> &mdash; authentication, database, and file storage. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase Privacy Policy</a></li>
+      <li><strong>Apple MusicKit</strong> &mdash; song search and playback via your Apple Music subscription. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
+      <li><strong>ElevenLabs</strong> &mdash; AI voice generation for announcer intros, processed server-side. <a href="https://elevenlabs.io/privacy-policy" target="_blank" rel="noopener">ElevenLabs Privacy Policy</a></li>
+      <li><strong>Mixpanel</strong> &mdash; product analytics to understand feature usage. <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener">Mixpanel Privacy Policy</a></li>
+      <li><strong>RevenueCat / Apple StoreKit</strong> &mdash; subscription management and purchase processing</li>
+    </ul>
+
+    <h3>Data Sharing</h3>
+    <p>We do not sell, rent, or trade your personal information to third parties. Data is shared with third-party services only as described above and only to the extent necessary to provide the HypeIntro service.</p>
+
+    <h3>Children's Privacy</h3>
+    <p>HypeIntro is designed for use by parents and team organizers managing youth baseball teams. The app is operated by adults (parents, coaches, organizers) on behalf of their children's teams. We do not knowingly collect personal information directly from children under 13. Player names and jersey numbers are entered by the parent or organizer, not by the child. If you believe a child has provided us with personal information directly, please contact us at <a href="mailto:help@hypeintro.com">help@hypeintro.com</a> and we will promptly delete it.</p>
+
+    <h3>Data Retention and Deletion</h3>
+    <p>You can delete your account at any time from the Settings screen within the app. When you delete your account, we remove your profile, team data, player configurations, and associated audio files from our servers. Some anonymized analytics data may be retained for product improvement purposes.</p>
+
+    <h3>Security</h3>
+    <p>We use industry-standard security measures including encrypted connections (HTTPS/TLS), row-level security policies on our database, and secure server-side processing for voice generation. API keys for third-party services are stored server-side and are never exposed in the client application.</p>
+
+    <h3>Changes to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by updating the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+    <h3>Contact Us</h3>
+    <p>If you have questions about this Privacy Policy, contact us at <a href="mailto:help@hypeintro.com">help@hypeintro.com</a>.</p>
+  </section>
+
+  <!-- TERMS OF SERVICE -->
+  <section id="terms" class="legal-section">
+    <h2>Terms of Service</h2>
+    <p class="updated">Last updated: February 24, 2026</p>
+
+    <p>These Terms of Service ("Terms") govern your use of the HypeIntro mobile application ("App") provided by HypeIntro ("we," "our," or "us"). By using the App, you agree to these Terms.</p>
+
+    <h3>Service Description</h3>
+    <p>HypeIntro is a mobile application that enables youth baseball team organizers and parents to manage walk-up songs, generate AI announcer voice intros, and play audio during games. The App requires an Apple Music subscription for full song playback functionality.</p>
+
+    <h3>Accounts</h3>
+    <p>You may create an account using Apple Sign In or email/password. You are responsible for maintaining the security of your account credentials. You must be at least 18 years old, or the age of legal majority in your jurisdiction, to create an account.</p>
+
+    <h3>Subscriptions and Billing</h3>
+    <p>HypeIntro offers a free tier with limited features and a Pro subscription with expanded capabilities. Subscriptions are billed annually through Apple's In-App Purchase system. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. You can manage and cancel your subscription in your Apple ID account settings. Refunds are handled by Apple in accordance with their refund policies.</p>
+
+    <h3>Free vs. Pro Tier</h3>
+    <p>The free tier includes one team, up to 12 players, three announcer voices, and basic walk-up playback. The Pro tier includes unlimited teams and players, all announcer voices, game day soundboard, break music, parent collaboration, and voice volume controls. Feature availability may change as we continue to develop the App.</p>
+
+    <h3>User Content</h3>
+    <p>You retain ownership of any content you create within the App, including team names, player names, and walk-up configurations. By using the App, you grant us a limited license to process, store, and display this content as necessary to provide the service. You are responsible for ensuring you have the right to use any content you submit.</p>
+
+    <h3>Acceptable Use</h3>
+    <p>You agree not to use the App to:</p>
+    <ul>
+      <li>Submit offensive, harmful, or inappropriate content</li>
+      <li>Attempt to access other users' data or accounts</li>
+      <li>Reverse engineer, decompile, or otherwise attempt to extract the source code</li>
+      <li>Use the App for any purpose other than managing youth sports audio</li>
+      <li>Circumvent subscription restrictions or feature gating</li>
+    </ul>
+
+    <h3>Intellectual Property</h3>
+    <p>The App, including its design, code, graphics, and AI voice generation system, is owned by HypeIntro and protected by intellectual property laws. Music played through the App is provided via Apple MusicKit and is subject to Apple's terms and your Apple Music subscription agreement.</p>
+
+    <h3>Disclaimer of Warranties</h3>
+    <p>The App is provided "as is" and "as available" without warranties of any kind, either express or implied. We do not guarantee that the App will be uninterrupted, error-free, or available at all times. AI-generated voice intros are produced by third-party services and may vary in quality.</p>
+
+    <h3>Limitation of Liability</h3>
+    <p>To the maximum extent permitted by law, HypeIntro shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data, revenue, or profits, arising from your use of the App. Our total liability for any claim related to the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</p>
+
+    <h3>Termination</h3>
+    <p>We may suspend or terminate your access to the App if you violate these Terms. You may stop using the App and delete your account at any time. Upon termination, your right to use the App ceases and your data will be deleted in accordance with our Privacy Policy.</p>
+
+    <h3>Changes to These Terms</h3>
+    <p>We may update these Terms from time to time. We will notify you of material changes by updating the "Last updated" date. Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+
+    <h3>Governing Law</h3>
+    <p>These Terms are governed by the laws of the United States. Any disputes arising from these Terms or your use of the App shall be resolved in accordance with applicable law.</p>
+
+    <h3>Contact Us</h3>
+    <p>If you have questions about these Terms, contact us at <a href="mailto:help@hypeintro.com">help@hypeintro.com</a>.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">&copy; 2026 HypeIntro</div>
+    <div class="footer-links">
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a href="mailto:help@hypeintro.com">help@hypeintro.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
